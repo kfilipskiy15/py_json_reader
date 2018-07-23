@@ -8,18 +8,20 @@ worksheet = workbook.add_worksheet()
 row = 0
 col = 0
 
+
 directory_list = list()
 names_list = list()
 
-for root, dirs, files in os.walk("D:\\Develop\\4Test\\json", topdown=False):
+for root, dirs, files in os.walk("C:\\WORK\\TEST_DATA\\Data_SET\\DATA_FOR_STAT\\clear_json", topdown=False):
     for name in files:
         names_list.append(name)
         directory_list.append(os.path.join(root, name))
 
-for i in directory_list:
+for idx, i in enumerate(directory_list):
         with open(i) as f:
             data = json.load(f)
-            # pprint(i)
+            os.path.splitext(i)
+            # print('Go throw element: ', idx)
             # pprint(data["volume_parameters"]["chest"])
             # pprint(data["volume_parameters"]["waist"])
             # pprint(data["volume_parameters"]["hips"])
@@ -29,6 +31,7 @@ for i in directory_list:
             worksheet.write(row, col + 3, data["volume_parameters"]["hips"])
             row += 1
 
+workbook.close()
 
 
 
